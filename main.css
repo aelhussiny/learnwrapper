@@ -1,0 +1,174 @@
+/* Basic Styles & Resets */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* App Container */
+.app-container {
+    display: flex;
+    flex-grow: 1;
+    min-height: 100vh;
+}
+
+/* --- Filter Panel Styling (Mobile First) --- */
+.filter-panel {
+    background-color: #ffffff;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    /* Mobile: Positioned off-screen at the top */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* State when the panel is open on mobile */
+.filter-panel.is-open {
+    transform: translateY(0);
+}
+
+.filter-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+.filter-panel h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+#close-filter-panel-button {
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.25rem;
+    color: #6c757d;
+}
+#close-filter-panel-button:hover {
+    color: #212529;
+}
+
+.filter-group:first {
+    margin-top: 1.5rem;
+}
+
+.filter-group {
+    margin-top: 0;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    font-size: 1rem;
+}
+
+/* --- Main Content Styling --- */
+.main-content {
+    width: 100%;
+    padding: 0;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    padding: 1.5rem 0.75rem;
+}
+
+.content-area {
+    border-radius: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+}
+
+calcite-card,
+calcite-input-text {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+calcite-input-text {
+    margin-bottom: 0;
+    margin-right: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- Desktop Layout (Media Query) --- */
+@media (min-width: 768px) {
+    /* On desktop, the mobile buttons are hidden */
+    #mobile-filter-button,
+    #close-filter-panel-button {
+        display: none;
+    }
+
+    /* The panel becomes a static sidebar */
+    .filter-panel {
+        position: sticky;
+        top: 0;
+        align-self: flex-start;
+        height: calc(100vh - 2rem);
+        overflow-y: auto;
+        flex: 0 0 280px; /* Panel width */
+        box-shadow: none;
+        border-right: 1px solid #dee2e6;
+        transform: none;
+    }
+
+    .main-content {
+        flex-grow: 1;
+        overflow-y: auto;
+        height: 100vh;
+    }
+
+    .content-area {
+        margin-top: 0;
+        padding: 0;
+    }
+
+    a {
+        width: calc(25% - 1.5rem);
+        margin: 0px 0.75rem 1.5rem 0.75rem;
+    }
+
+    calcite-card {
+        height: 100%;
+    }
+
+    calcite-input-text {
+        margin-right: 0;
+    }
+}

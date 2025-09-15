@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ArcGIS Learn Wrapper</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://js.arcgis.com/calcite-components/3.2.1/calcite.css"
+        />
+        <link rel="stylesheet" type="text/css" href="main.css" />
+        <script
+            type="module"
+            src="https://js.arcgis.com/calcite-components/3.2.1/calcite.esm.js"
+        ></script>
+    </head>
+    <body>
+        <div class="app-container">
+            <!-- Filter Panel: Hidden on mobile, visible on desktop -->
+            <aside class="filter-panel" id="filter-panel">
+                <div class="filter-panel-header">
+                    <h2>Filters</h2>
+                    <button
+                        id="close-filter-panel-button"
+                        onclick="document.getElementById('filter-panel').classList.remove('is-open');"
+                    >
+                        &times;
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <header class="main-header">
+                    <calcite-input-text
+                        placeholder="Search..."
+                        clearable="true"
+                        id="search-input"
+                    ></calcite-input-text>
+                    <calcite-button
+                        id="mobile-filter-button"
+                        onclick="document.getElementById('filter-panel').classList.toggle('is-open');"
+                    >
+                        Filters
+                    </calcite-button>
+                </header>
+                <div class="content-area" id="card-gallery"></div>
+            </main>
+        </div>
+
+        <script src="index.js"></script>
+    </body>
+</html>
