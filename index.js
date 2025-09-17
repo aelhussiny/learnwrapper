@@ -156,6 +156,7 @@ function setupFilters() {
         `;
     }
     setupDropdownEvents();
+    setupFilterClearing();
 }
 
 function setupDropdownEvents() {
@@ -182,6 +183,20 @@ function setupDropdownEvents() {
     filterCards();
 }
 
+function setupFilterClearing() {
+    document
+        .getElementById("filter-clear-button")
+        .addEventListener("click", () => {
+            Object.keys(activeFilters).forEach((key) => {
+                delete activeFilters[key];
+                document.getElementById(`${key}-button`).innerText = `${
+                    key.charAt(0).toUpperCase() + key.substring(1)
+                }`;
+            });
+            filterCards();
+        });
+}
+
 function setupSearch() {
     document
         .getElementById("search-input")
@@ -191,8 +206,16 @@ function setupSearch() {
     filterCards();
 }
 
+function toggleFilterClearVisibility() {
+    const filterClearButton = document.getElementById("filter-clear-button");
+    if (Object.keys(activeFilters).length > 0) {
+        filterClearButton.style.display = "inline-block";
+    } else {
+        filterClearButton.style.display = "none";
+    }
+}
+
 function showCards() {
-    document.getElementById("card-gallery").innerHTML = "";
     appData.forEach((item) => {
         const card = createCard(item);
         document.getElementById("card-gallery").appendChild(card);
@@ -230,15 +253,24 @@ function createCard(item) {
 }
 
 function filterCards() {
+    toggleFilterClearVisibility();
+    let visibleCount = 0;
     const searchTerm = document.getElementById("search-input").value;
 
     appData.forEach((item) => {
         const isVisible =
             matchesFilters(item) && matchesSearch(item, searchTerm);
+        if (isVisible) visibleCount++;
         if (item.cardElement) {
             item.cardElement.style.display = isVisible ? "block" : "none";
         }
     });
+
+    if (visibleCount === 0) {
+        document.getElementById("no-results").style.display = "block";
+    } else {
+        document.getElementById("no-results").style.display = "none";
+    }
 }
 
 function matchesFilters(item) {

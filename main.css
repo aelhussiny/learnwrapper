@@ -127,6 +127,17 @@ a {
     color: inherit;
 }
 
+#no-results {
+    display: none;
+    text-align: center;
+    width: 100%;
+    color: #6c757d;
+}
+
+#no-results h3 {
+    margin-top: 0;
+}
+
 /* --- Desktop Layout (Media Query) --- */
 @media (min-width: 768px) {
     /* On desktop, the mobile buttons are hidden */
@@ -170,5 +181,10 @@ a {
 
     calcite-input-text {
         margin-right: 0;
+    }
+
+    #no-results {
+        text-align: left;
+        margin-left: 1rem;
     }
 }

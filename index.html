@@ -20,7 +20,16 @@
             <!-- Filter Panel: Hidden on mobile, visible on desktop -->
             <aside class="filter-panel" id="filter-panel">
                 <div class="filter-panel-header">
-                    <h2>Filters</h2>
+                    <h2>
+                        Filters
+                        <calcite-button
+                            id="filter-clear-button"
+                            icon-start="x"
+                            appearance="outline"
+                            scale="s"
+                        >Clear</calcite-button>
+                    </h2>
+
                     <button
                         id="close-filter-panel-button"
                         onclick="document.getElementById('filter-panel').classList.remove('is-open');"
@@ -45,7 +54,12 @@
                         Filters
                     </calcite-button>
                 </header>
-                <div class="content-area" id="card-gallery"></div>
+                <div class="content-area" id="card-gallery">
+                    <div id="no-results">
+                        <h3>No results found</h3>
+                        <p>Try adjusting your filters or search term.</p>
+                    </div>
+                </div>
             </main>
         </div>
 
