@@ -192,6 +192,16 @@ function setupFilterClearing() {
                 document.getElementById(`${key}-button`).innerText = `${
                     key.charAt(0).toUpperCase() + key.substring(1)
                 }`;
+                document
+                    .querySelector(
+                        `#${key}-dropdown calcite-dropdown-item[selected]`
+                    )
+                    ?.removeAttribute("selected");
+                document
+                    .querySelector(
+                        `#${key}-dropdown calcite-dropdown-item:first-child`
+                    )
+                    ?.setAttribute("selected", "true");
             });
             filterCards();
         });
